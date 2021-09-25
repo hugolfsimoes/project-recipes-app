@@ -4,6 +4,8 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { fetchRecipeIngredientsDrink } from '../../services/recipeAPI';
 
+import backGroundImage from '../../images/ingredients1.png';
+
 function ExploreIngredientsDrink() {
   const history = useHistory();
   const [ingredients, setIngredients] = useState([]);
@@ -19,21 +21,21 @@ function ExploreIngredientsDrink() {
   }, []);
 
   return (
-    <div className="explore-ingret">
+    <div className="explore-ingret" style={{ backgroundImage: `url(${backGroundImage})` }}>
       <Header title="Explorar Ingredientes" display="false" />
       <div className="div-cards-ingredients">
         {ingredients.length > 0 && ingredients.map((ingredient, index) => (
           <div
             className="ingrets1"
             role="presentation"
-            data-testid={ `${index}-ingredient-card` }
-            key={ ingredient.idIngredient }
-            style={ { border: 'solid black 1px' } }
-            onClick={ () => history
-              .push({ pathname: '/bebidas', ingredient: ingredient.strIngredient1 }) }
+            data-testid={`${index}-ingredient-card`}
+            key={ingredient.idIngredient}
+            style={{ border: 'solid black 1px' }}
+            onClick={() => history
+              .push({ pathname: '/bebidas', ingredient: ingredient.strIngredient1 })}
           >
-            <img data-testid={ `${index}-card-img` } width="20px" src={ `https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png` } alt="" />
-            <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient1}</p>
+            <img data-testid={`${index}-card-img`} width="20px" src={`https://www.thecocktaildb.com/images/ingredients/${ingredient.strIngredient1}-Small.png`} alt="" />
+            <p data-testid={`${index}-card-name`}>{ingredient.strIngredient1}</p>
           </div>
         ))}
       </div>

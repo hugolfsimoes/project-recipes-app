@@ -5,6 +5,8 @@ import Header from '../components/Header';
 import shareIcon from '../images/shareIcon.svg';
 import { copyLink } from '../helper/functions';
 
+import backGroundImage from '../images/receitas.png';
+
 export default function RecipeDone() {
   const history = useHistory();
   const doneRecepies = JSON.parse(localStorage
@@ -46,87 +48,87 @@ export default function RecipeDone() {
   }
 
   return (
-    <div className="recipe-done">
+    <div className="recipe-done" style={{ backgroundImage: `url(${backGroundImage})` }}>
       <Header title="Receitas Feitas" display="false" />
 
       <div className="done-filters">
         <button
           type="button"
           data-testid="filter-by-all-btn"
-          onClick={ () => filterDoneRecepies('all') }
+          onClick={() => filterDoneRecepies('all')}
         >
           All
         </button>
         <button
           type="button"
           data-testid="filter-by-food-btn"
-          onClick={ () => filterDoneRecepies('comidas') }
+          onClick={() => filterDoneRecepies('comidas')}
         >
           Food
         </button>
         <button
           type="button"
           data-testid="filter-by-drink-btn"
-          onClick={ () => filterDoneRecepies('bebidas') }
+          onClick={() => filterDoneRecepies('bebidas')}
         >
           Drinks
         </button>
       </div>
 
       <div className="all-recepe-done">
-        { newDoneRecipies.map((recipe, index) => (
+        {newDoneRecipies.map((recipe, index) => (
           <div
             className="doneRecipes"
-            key={ recipe.id }
-            style={ { border: 'solid black 2px' } }
+            key={recipe.id}
+            style={{ border: 'solid black 2px' }}
           >
 
             <img
               className="done-img"
               role="presentation"
-              data-testid={ `${index}-horizontal-image` }
-              style={ { width: '20px' } }
-              src={ recipe.image }
-              alt={ `Imagem da receita ${recipe.name}` }
-              onClick={ () => history.push(`/${recipe.type}s/${recipe.id}`) }
+              data-testid={`${index}-horizontal-image`}
+              style={{ width: '20px' }}
+              src={recipe.image}
+              alt={`Imagem da receita ${recipe.name}`}
+              onClick={() => history.push(`/${recipe.type}s/${recipe.id}`)}
             />
             <div className="infomations-done">
               <p
-                data-testid={ `${index}-horizontal-top-text` }
-                style={ { padding: '20px' } }
+                data-testid={`${index}-horizontal-top-text`}
+                style={{ padding: '20px' }}
               >
-                { recipe.type === 'comida' ? `${recipe.area} - ${recipe.category}`
+                {recipe.type === 'comida' ? `${recipe.area} - ${recipe.category}`
                   : recipe.alcoholicOrNot}
               </p>
               <p
                 role="presentation"
-                onClick={ () => history.push(`/${recipe.type}s/${recipe.id}`) }
-                data-testid={ `${index}-horizontal-name` }
-                style={ { padding: '20px' } }
+                onClick={() => history.push(`/${recipe.type}s/${recipe.id}`)}
+                data-testid={`${index}-horizontal-name`}
+                style={{ padding: '20px' }}
               >
                 {recipe.name}
               </p>
 
-              <p data-testid={ `${index}-horizontal-done-date` }>
-                { recipe.doneDate }
+              <p data-testid={`${index}-horizontal-done-date`}>
+                {recipe.doneDate}
               </p>
             </div>
 
             <img
               className="icon-share"
               role="presentation"
-              onClick={ () => showLink(recipe.id, recipe) }
-              data-testid={ `${index}-horizontal-share-btn` }
-              src={ shareIcon }
+              onClick={() => showLink(recipe.id, recipe)}
+              data-testid={`${index}-horizontal-share-btn`}
+              src={shareIcon}
               alt="Share Icon"
             />
 
             {object[recipe.id] && <p>Link copiado!</p>}
 
-            { recipe.type === 'comida' && recipe.tags.slice(0, 2).map((tag, tagIndex) => (
+            {recipe.type === 'comida' && recipe.tags.slice(0, 2).map((tag, tagIndex) => (
               <p
-                key={ tagIndex }
-                data-testid={ `${index}-${tag}-horizontal-tag` }
+                key={tagIndex}
+                data-testid={`${index}-${tag}-horizontal-tag`}
               >
                 {tag}
               </p>

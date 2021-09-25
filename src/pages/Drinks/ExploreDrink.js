@@ -5,6 +5,8 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import { fetchRecipeRandomDrink } from '../../services/recipeAPI';
 
+import backGroundImage from '../../images/drinkexplore.png';
+
 export default function ExploreDrink() {
   const history = useHistory();
   const [randomRecipe, setRandomRecipe] = useState({});
@@ -24,20 +26,20 @@ export default function ExploreDrink() {
     func();
   }, [change]);
   return (
-    <div className="explorar-drink-app">
+    <div className="explorar-drink-app" style={{ backgroundImage: `url(${backGroundImage})` }}>
       <Header title="Explorar Bebidas" display="false" />
       <div className="explore-drink">
         <Button
           type="button"
           data-testid="explore-by-ingredient"
-          onClick={ () => history.push('/explorar/bebidas/ingredientes') }
+          onClick={() => history.push('/explorar/bebidas/ingredientes')}
         >
           Por Ingredientes
         </Button>
         <Button
           type="button"
           data-testid="explore-surprise"
-          onClick={ handleClickRandomRecipe }
+          onClick={handleClickRandomRecipe}
         >
           Me Surpreenda!
         </Button>

@@ -4,8 +4,12 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 import RecipeList from '../../components/RecipeList';
-import { fetchCategoryFood, fetchRecipeAllFood,
-  fetchRecipeIngredientsExploreFood } from '../../services/recipeAPI';
+import {
+  fetchCategoryFood, fetchRecipeAllFood,
+  fetchRecipeIngredientsExploreFood,
+} from '../../services/recipeAPI';
+
+import backGroundImage from '../../images/receitas.png';
 
 export default function MainFood(match) {
   const [list, setList] = useState({});
@@ -34,18 +38,19 @@ export default function MainFood(match) {
   }, [match.location.ingredient]);
   return (
     <div>
-      { loading ? <Loading />
+      {loading ? <Loading />
         : (
           <div
             className="main-food-class"
+            style={{ backgroundImage: `url(${backGroundImage})` }}
           >
             <Header title="Comidas" display="true" />
-            { Object.keys(categoryList).length !== 0 && <FilterRecipe
-              list={ categoryList }
+            {Object.keys(categoryList).length !== 0 && <FilterRecipe
+              list={categoryList}
               recipeType="food"
             />}
             {Object.keys(list).length !== 0
-        && <RecipeList listAll={ list } />}
+              && <RecipeList listAll={list} />}
             <Footer />
           </div>)}
     </div>

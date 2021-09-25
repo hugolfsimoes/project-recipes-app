@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
+import backGroundImage from '../images/profile.png';
+
 export default function Profile() {
   const [email, setEmail] = useState('');
   const history = useHistory();
@@ -22,32 +24,32 @@ export default function Profile() {
   /*
   const email = localStorage.getItem('user', 'value').split('"')[3]; */
   return (
-    <div className="profile-app">
+    <div className="profile-app" style={{ backgroundImage: `url(${backGroundImage})` }}>
       <Header title="Perfil" display="false" />
       {email
-      && (
-        <p data-testid="profile-email">
-          {email.split('"')[3]}
-        </p>)}
+        && (
+          <p data-testid="profile-email">
+            {email.split('"')[3]}
+          </p>)}
       <div className="profile">
         <Button
           type="Button"
           data-testid="profile-done-btn"
-          onClick={ () => history.push('/receitas-feitas') }
+          onClick={() => history.push('/receitas-feitas')}
         >
           Receitas Feitas
         </Button>
         <Button
           type="Button"
           data-testid="profile-favorite-btn"
-          onClick={ () => history.push('/receitas-favoritas') }
+          onClick={() => history.push('/receitas-favoritas')}
         >
           Receitas Favoritas
         </Button>
         <Button
           type="Button"
           data-testid="profile-logout-btn"
-          onClick={ handeClickLogOut }
+          onClick={handeClickLogOut}
         >
           Sair
         </Button>

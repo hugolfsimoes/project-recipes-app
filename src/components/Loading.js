@@ -1,13 +1,15 @@
 import React from 'react';
 import rockGlass from '../images/rockGlass.svg';
 
+import backGroundImage from '../images/loading.png';
+
 export default function Loading() {
   return (
-    <div className="loading-app">
+    <div className="loading-app" style={{ backgroundImage: `url(${backGroundImage})` }}>
       <object
         className="rocksGlass"
         type="image/svg+xml"
-        data={ rockGlass }
+        data={rockGlass}
         width="100"
       >
         Glass

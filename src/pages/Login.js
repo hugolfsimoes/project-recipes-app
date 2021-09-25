@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import Button from 'react-bootstrap/Button';
 
+import backGroundImage from '../images/Veganas.png';
+
 function Login() {
   const [isDisable, setisDisable] = useState(true);
   const [email, setEmail] = useState('');
@@ -33,7 +35,7 @@ function Login() {
   }
 
   return (
-    <div className="app-login">
+    <div className="app-login" style={{ backgroundImage: `url(${backGroundImage})` }}>
 
       <div className="login-content">
         <div className="input-group mb-3">
@@ -41,7 +43,7 @@ function Login() {
           <input
             className="form-control"
             type="email"
-            onChange={ (e) => setEmail(e.target.value) }
+            onChange={(e) => setEmail(e.target.value)}
             data-testid="email-input"
             placeholder="Enter your email"
           />
@@ -50,7 +52,7 @@ function Login() {
           <input
             className="form-control"
             type="password"
-            onChange={ (e) => setPassword(e.target.value) }
+            onChange={(e) => setPassword(e.target.value)}
             data-testid="password-input"
             placeholder="Enter your password"
           />
@@ -58,8 +60,8 @@ function Login() {
 
         <Button
           type="button"
-          onClick={ onclick }
-          disabled={ isDisable }
+          onClick={onclick}
+          disabled={isDisable}
           data-testid="login-submit-btn"
         >
           Entrar

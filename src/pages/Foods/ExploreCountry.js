@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import { fetchRecipeAllFood,
-  fetchRecipeBySelectedCountry, fetchRecipeCountry } from '../../services/recipeAPI';
+import {
+  fetchRecipeAllFood,
+  fetchRecipeBySelectedCountry, fetchRecipeCountry,
+} from '../../services/recipeAPI';
+
+import backGroundImage from '../../images/map.png';
 
 export default function ExploreCountry() {
   const history = useHistory();
@@ -34,19 +38,19 @@ export default function ExploreCountry() {
     getRecepies();
   }, [countrySelected]);
   return (
-    <div className="explore-country">
+    <div className="explore-country" style={{ backgroundImage: `url(${backGroundImage})` }}>
       <Header title="Explorar Origem" display="true" />
       <select
         data-testid="explore-by-area-dropdown"
         name="country"
         id="id-country"
-        onChange={ ({ target }) => setCountrySelected(target.value) }
+        onChange={({ target }) => setCountrySelected(target.value)}
       >
         <option key="0" data-testid="All-option">All</option>
         {countries.map((country, index) => (
           <option
-            key={ index + 1 }
-            data-testid={ `${country.strArea}-option` }
+            key={index + 1}
+            data-testid={`${country.strArea}-option`}
           >
             {country.strArea}
           </option>
@@ -54,23 +58,23 @@ export default function ExploreCountry() {
       </select>
 
       <div className="show-recipe">
-        { recepies.map((element, index) => (
+        {recepies.map((element, index) => (
           <div
             role="presentation"
             className="papai"
-            key={ index }
-            data-testid={ `${index}-recipe-card` }
-            onClick={ () => history.push(`/comidas/${element.idMeal}`) }
+            key={index}
+            data-testid={`${index}-recipe-card`}
+            onClick={() => history.push(`/comidas/${element.idMeal}`)}
           >
             <img
               className="filhinho"
-              src={ element.strMealThumb }
-              data-testid={ `${index}-card-img` }
-              alt={ element.strMeal }
+              src={element.strMealThumb}
+              data-testid={`${index}-card-img`}
+              alt={element.strMeal}
               width="100%"
             />
-            <p data-testid={ `${index}-card-name` }>
-              { element.strMeal}
+            <p data-testid={`${index}-card-name`}>
+              {element.strMeal}
             </p>
           </div>
         ))}

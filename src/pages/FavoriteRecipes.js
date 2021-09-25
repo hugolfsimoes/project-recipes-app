@@ -5,6 +5,8 @@ import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import Header from '../components/Header';
 
+import backGroundImage from '../images/receitas.png';
+
 export default function FavoriteRecipes() {
   const history = useHistory();
   const favoriteRecepies = JSON.parse(localStorage
@@ -37,63 +39,66 @@ export default function FavoriteRecipes() {
   }
   return (
 
-    <div className="recipe-favorite">
+    <div
+      className="recipe-favorite"
+      style={{ backgroundImage: `url(${backGroundImage})` }}
+    >
       <Header title="Receitas Favoritas" classname="false" />
       <div className="favorite-filters">
         <button
           type="button"
           data-testid="filter-by-all-btn"
-          onClick={ () => filterFavorites('all') }
+          onClick={() => filterFavorites('all')}
         >
           All
         </button>
         <button
           type="button"
           data-testid="filter-by-food-btn"
-          onClick={ () => filterFavorites('comidas') }
+          onClick={() => filterFavorites('comidas')}
         >
           Food
         </button>
         <button
           type="button"
           data-testid="filter-by-drink-btn"
-          onClick={ () => filterFavorites('bebidas') }
+          onClick={() => filterFavorites('bebidas')}
         >
           Drinks
         </button>
       </div>
 
       <div className="all-recepe-favorite">
-        { newFavoriteRecipies.map((recipe, index) => (
+        {newFavoriteRecipies.map((recipe, index) => (
           <div
             className="favoriteRecipes"
-            key={ recipe.id }
-            style={ { border: 'solid black 2px' } }
+            key={recipe.id}
+            style={{ border: 'solid black 2px' }}
           >
 
             <img
               className="favorite-img"
               role="presentation"
-              data-testid={ `${index}-horizontal-image` }
-              style={ { width: '20px' } }
-              src={ recipe.image }
-              alt={ `Imagem da receita ${recipe.name}` }
-              onClick={ () => history.push(`/${recipe.type}s/${recipe.id}`) }
+              data-testid={`${index}-horizontal-image`}
+              style={{ width: '20px' }}
+              src={recipe.image}
+              alt={`Imagem da receita ${recipe.name}`}
+              onClick={() => history.push(`/${recipe.type}s/${recipe.id}`)}
             />
 
             <div className="infomations-favorite">
               <p
-                data-testid={ `${index}-horizontal-top-text` }
-                style={ { padding: '20px' } }
+                data-testid={`${index}-horizontal-top-text`}
+                style={{ padding: '20px' }}
               >
-                { recipe.type === 'comida' ? `${recipe.area} - ${recipe.category}`
+                {recipe.type === 'comida' ? `${recipe.area} - ${recipe.category}`
                   : recipe.alcoholicOrNot}
               </p>
               <p
                 role="presentation"
-                onClick={ () => history.push(`/${recipe.type}s/${recipe.id}`) }
-                data-testid={ `${index}-horizontal-name` }
-                style={ { padding: '20px' } }
+                onClick={() => history.push(`/${recipe.type}s/${recipe.id}`)}
+                data-testid={`${index}-horizontal-name`}
+                style={{ padding: '20px' }}
               >
                 {recipe.name}
               </p>
@@ -102,10 +107,10 @@ export default function FavoriteRecipes() {
               <img
                 className="favorite-share"
                 role="presentation"
-                src={ shareIcon }
+                src={shareIcon}
                 alt="Ícone para compartilhar"
-                data-testid={ `${index}-horizontal-share-btn` }
-                onClick={ () => handleClickClipBoard(recipe.type, recipe.id) }
+                data-testid={`${index}-horizontal-share-btn`}
+                onClick={() => handleClickClipBoard(recipe.type, recipe.id)}
               />
 
               {show && (
@@ -114,10 +119,10 @@ export default function FavoriteRecipes() {
               <img
                 className="heart-share"
                 role="presentation"
-                src={ blackHeartIcon }
+                src={blackHeartIcon}
                 alt="Ícone para compartilhar"
-                data-testid={ `${index}-horizontal-favorite-btn` }
-                onClick={ () => removeFavorite(recipe) }
+                data-testid={`${index}-horizontal-favorite-btn`}
+                onClick={() => removeFavorite(recipe)}
               />
             </div>
           </div>
