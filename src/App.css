@@ -543,7 +543,6 @@
 }
 
 .recipe-favorite {
-  background-image: url('/receitas.png');
   background-size: cover;
   display: flex;
   flex-direction: column;
